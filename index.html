@@ -3,140 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人主页 - 嵌入式软件开发</title>
+    <title>吕君杭 - 嵌入式软件开发个人主页</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Microsoft YaHei", sans-serif;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        /* 科技感深色主题 */
+        :root {
+            --primary: #00d4ff;
+            --secondary: #0066ff;
+            --dark: #121826;
+            --light-dark: #1e293b;
+            --text: #e2e8f0;
+            --gray: #94a3b8;
         }
 
         body {
-            background: #f6f8fa;
-            color: #333;
-            line-height: 1.7;
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background: var(--light-dark);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary);
+            color: #000;
         }
 
         .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 0 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
         }
 
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 35px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        /* 头部 */
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--light-dark);
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .title {
-            font-size: 28px;
-            margin-bottom: 10px;
-            color: #222;
-        }
-
-        .job {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .contact {
-            color: #555;
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
-
-        h2 {
-            font-size: 20px;
-            margin: 25px 0 15px;
-            color: #2c3e50;
-            border-left: 4px solid #4a83f6;
-            padding-left: 12px;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
         }
 
         .tag {
             display: inline-block;
-            background: #eef4ff;
-            color: #4a83f6;
-            padding: 5px 12px;
+            padding: 0.3rem 0.8rem;
+            margin: 0.3rem;
+            background: var(--light-dark);
             border-radius: 20px;
-            margin: 5px 6px 5px 0;
-            font-size: 14px;
+            font-size: 0.9rem;
+            color: var(--primary);
         }
 
-        .footer {
+        /* 内容模块 */
+        section {
+            margin: 3rem 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .card {
+            background: var(--light-dark);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.2rem;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .card .sub {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        /* 技能网格 */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: var(--light-dark);
+            padding: 1rem;
+            border-radius: 8px;
             text-align: center;
-            color: #999;
-            margin-top: 40px;
-            font-size: 14px;
+        }
+
+        /* 页面卡片链接 */
+        .page-card {
+            background: var(--light-dark);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text);
+            display: block;
+        }
+        .page-card:hover {
+            background: var(--primary);
+            color: #000;
+        }
+        .page-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        /* 联系方式 */
+        .contact {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light-dark);
+            border-radius: 12px;
+        }
+
+        .contact a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact a:hover {
+            color: var(--secondary);
+        }
+
+        /* 底部 */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--gray);
+            border-top: 1px solid var(--light-dark);
+            margin-top: 3rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .skill-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <div class="card">
-            <h1 class="title">个人主页</h1>
-            <div class="job">嵌入式软件开发工程师</div>
 
-            <div class="contact">📞 电话：15067940992</div>
-            <div class="contact">📩 邮箱：2811790316@qq.com</div>
+<!-- 导航栏 -->
+<div class="navbar">
+    <div class="nav-container">
+        <a href="#home" class="nav-link active">首页</a>
+        <a href="#projects" class="nav-link">项目详情</a>
+        <a href="#skills" class="nav-link">技能证书</a>
+        <a href="#about" class="nav-link">个人能力</a>
+        <a href="#contact" class="nav-link">联系我</a>
+    </div>
+</div>
+
+<div class="container">
+    <!-- 首页模块 -->
+    <section id="home">
+        <header>
+            <div class="avatar">嵌</div>
+            <h1>吕君杭</h1>
+            <p class="title">嵌入式软件开发工程师 | 单片机 | STM32 | 物联网</p>
+            <div>
+                <span class="tag">C/C++</span>
+                <span class="tag">STM32</span>
+                <span class="tag">CAN/MQTT</span>
+                <span class="tag">IoT</span>
+                <span class="tag">硬件调试</span>
+            </div>
+        </header>
+
+        <h2>个人简介</h2>
+        <div class="card">
+            <p>熟练掌握嵌入式系统开发，精通C/C++语言与STM32开发，熟悉各类通信协议与硬件调试，具备完整的项目开发与实习经验。注重代码规范与文档维护，擅长物联网设备开发、车载总线、传感器数据采集等方向，具备独立开发与团队协作能力。</p>
         </div>
 
-        <div class="card">
-            <h2>📌 求职意向</h2>
-            <p>嵌入式软件开发、单片机开发、物联网开发、驱动开发</p>
+        <!-- 快捷入口卡片 -->
+        <h2>快速浏览</h2>
+        <div class="page-grid">
+            <a href="#projects" class="page-card">📊 项目详情</a>
+            <a href="#skills" class="page-card">📚 技能证书</a>
+            <a href="#about" class="page-card">个人能力</a>
+            <a href="#contact" class="page-card">📞 联系方式</a>
         </div>
+    </section>
+
+    <!-- 项目详情页 -->
+    <section id="projects">
+        <h2>📊 项目与实习经验</h2>
 
         <div class="card">
-            <h2>💡 专业技能</h2>
-            <span class="tag">C语言</span>
-            <span class="tag">C++</span>
-            <span class="tag">STM32</span>
-            <span class="tag">51单片机</span>
-            <span class="tag">UART/SPI/I2C</span>
-            <span class="tag">CAN总线</span>
-            <span class="tag">Linux基础</span>
-            <span class="tag">Git</span>
-            <span class="tag">传感器驱动</span>
-            <span class="tag">物联网</span>
-        </div>
-
-        <div class="card">
-            <h2>📚 教育经历</h2>
-            <p><strong>大学</strong> - 嵌入式相关专业（可自行修改）</p>
-        </div>
-
-        <div class="card">
-            <h2>🔧 项目经历</h2>
+            <h3>智能家居温控系统</h3>
+            <p class="sub">2025.03-2025.12 | 物联网嵌入式开发</p>
             <ul>
-                <li>基于STM32的环境监测系统</li>
-                <li>智能家居控制器开发</li>
-                <li>单片机+传感器数据采集项目</li>
-                <li>物联网MQTT通信实现</li>
+                <li>使用STM32CubeMX配置硬件外设(ADC、定时器)，完成传感器数据采集</li>
+                <li>通过ESP8266接入阿里云IoT平台，实现MQTT协议通信，平均延迟<200ms</li>
+                <li>实现手机App远程监控与控制，完成完整物联网温控系统开发</li>
             </ul>
         </div>
 
         <div class="card">
-            <h2>📖 自我评价</h2>
-            <p>热爱嵌入式开发，熟悉单片机、传感器、通信协议，具备扎实的硬件基础与软件开发能力，做事认真，学习能力强，希望在嵌入式领域长期发展。</p>
+            <h3>车载CAN总线数据记录仪</h3>
+            <p class="sub">2024.07-2024.12 | 车载嵌入式开发</p>
+            <ul>
+                <li>配置STM32的CAN控制器，实现双滤波接收(标准帧/扩展帧)，误码率<0.01%</li>
+                <li>集成FatFS文件系统，将CAN数据实时写入SD卡，峰值速率1MB/s</li>
+                <li>支持数据实时存储与上位机解析，用于车辆状态诊断</li>
+            </ul>
         </div>
 
-        <div class="footer">
-            © 2025 我的个人主页 | 由 GitHub Pages 驱动
+        <div class="card">
+            <h3>XX科技有限公司 | 嵌入式开发实习生</h3>
+            <p class="sub">2023.06-2023.09 | 开发与测试</p>
+            <ul>
+                <li>参与工业控制器测试，编写Python自动化测试脚本，提升测试效率30%</li>
+                <li>协助调试RS485通信故障，优化终端电阻配置解决信号反射问题</li>
+                <li>完成硬件调试、程序烧录与文档编写工作</li>
+            </ul>
         </div>
-    </div>
+    </section>
+
+    <!-- 技能证书页 -->
+    <section id="skills">
+        <h2>📚 核心技能</h2>
+        <div class="skill-grid">
+            <div class="skill-item">C/C++(精通)</div>
+            <div class="skill-item">Python(基础)</div>
+            <div class="skill-item">ARM汇编</div>
+            <div class="skill-item">STM32开发</div>
+            <div class="skill-item">I2C/SPI/UART</div>
+            <div class="skill-item">CAN/Modbus/MQTT</div>
+            <div class="skill-item">Keil/IAR</div>
+            <div class="skill-item">STM32CubeMX</div>
+            <div class="skill-item">Git版本管理</div>
+            <div class="skill-item">PCB绘制(AD)</div>
+            <div class="skill-item">焊接调试</div>
+            <div class="skill-item">传感器应用</div>
+        </div>
+
+        <h2>🎓 教育背景</h2>
+        <div class="card">
+            <h3>浙江大学 | 软件开发专业</h3>
+            <p class="sub">本科 | 2021.09 - 2025.07</p>
+            <p>主修课程：嵌入式系统设计、C语言程序设计、单片机原理、计算机组成原理</p>
+        </div>
+    </section>
+
+    <!-- 个人能力页 -->
+    <section id="about">
+        <h2>🏅 个人能力</h2>
+        <div class="card">
+            <ul>
+                <li>语言能力：CET-6，可流畅阅读英文芯片手册与技术文档</li>
+                <li>办公技能：熟练使用Office三件套，高效完成文档与数据分析</li>
+                <li>开发习惯：注重代码规范与维护，熟练使用Git进行版本管理</li>
+                <li>综合素质：乐于技术分享，沟通顺畅，团队协作能力强</li>
+            </ul>
+        </div>
+
+        <h2>📌 求职意向</h2>
+        <div class="card">
+            <h3>嵌入式软件开发工程师</h3>
+            <p>期望岗位：嵌入式软件开发、单片机开发、物联网开发、硬件驱动开发</p>
+            <p>核心方向：STM32开发、通信协议、IoT设备、车载/工业控制</p>
+        </div>
+    </section>
+
+    <!-- 联系方式页 -->
+    <section id="contact">
+        <h2>📞 联系方式</h2>
+        <div class="contact">
+            <a href="mailto:2811790316@qq.com">📩 2811790316@qq.com</a><br><br>
+            <a href="tel:15067940992">📱 15067940992</a><br><br>
+            <a href="https://lvjun027-ops.github.io" target="_blank">🔗 GitHub</a>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer>
+        <p>吕君杭 | 嵌入式软件开发工程师 | 求职专用个人主页 © 2026</p>
+    </footer>
+</div>
+
 </body>
 </html>
